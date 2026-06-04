@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <header class="encabezado">
+        <img src="img/fondoenca.png" class="fondoenca">
+         <nav class="menu">
+        <a href="Index.html">Inicio</a>
+        <span class="estrella">★</span>
+        <a href="Historia.html">Historia</a>
+        <span class="estrella">★</span>
+        <a href="Productos.html">Productos</a>
+        <span class="estrella">★</span>
+        <a href="Contactos.html">Contacto</a>
+        <a href="carrito.html">
+          <img src="img/carrito.png" class="carrito"></a>
+
+
+        </nav>
+    </header>
+    
+    <h1 class="titulo">NUESTROS PRODUCTOS</h1>
+
+    <div class="totalproducto">
+
+    <div class="producto">
+            <h2>Chorizo</h2>
+            <img src="img/chorizo.png" alt="Chorizo">
+            <p>Sabor auténtico y especias que realzan cada receta.</p>
+            <P>Precio: $18.000</P>
+            <button onclick="Agregar(0)">Agregar Chorizo</button>
+        </div>
+
+        <div class="producto">
+            <h2>Butifarra</h2>
+            <img src="img/butifarra.png" alt="Butifarra">
+            <p>Textura suave y sabor tradicional para compartir.</p>
+            <P>Precio: $16.000</P>
+            <button onclick="Agregar(1)">Agregar Butifarra</button>
+        </div>
+
+        <div class="producto">
+             <h2>Jamón</h2>
+            <img src="img/jamon.png" alt="jamon">
+            <p>Jugoso, delicioso y perfecto para cualquier ocasión.</p>
+            <P>Precio: $22.000</P>
+            <button onclick="Agregar(2)">Agregar jamon</button>
+        </div>
+
+        <div class="producto">
+            <h2>Salchicha Americana</h2>
+            <img src="img/americana.png" alt="Salchicha americana">
+            <p>Clásica, versátil y siempre deliciosa.</p>
+            <P>Precio: $15.000</P>
+            <button onclick="Agregar(3)">Agregar Salchicha Americana</button>
+        </div>
+
+        <div class="producto">
+            <h2>Tocineta Blanca</h2>
+            <img src="img/blanca.png" alt="Tocineta Blanca">
+            <p>Suave, práctica y perfecta para tus preparaciones.</p>
+            <P>Precio: $25.000</P>
+            <button onclick="Agregar(4)">Agregar Tocineta Blanca</button>
+        </div>
+
+        <div class="producto">
+            <h2>Salchicha Pollo</h2>
+            <img src="img/salchicha.png" alt="Salchicha Tradicional">
+            <p>Presentación familiar, práctica y llena de sabor.</p>
+            <P>Precio: $28.000</P>
+            <button onclick="Agregar(5)">Salchicha Tradicional</button>
+        </div>
+
+</div>
+    <script>
+let cantidades = JSON.parse(localStorage.getItem("cantidades"));
+
+if(cantidades == null){
+    cantidades = [0,0,0,0,0,0];
+}
+
+function Agregar(pos){
+
+    cantidades[pos]++;
+
+    localStorage.setItem(
+        "cantidades",
+        JSON.stringify(cantidades)
+    );
+
+    alert("Producto agregado al carrito");
+}
+</script>
+</body>
+</html>

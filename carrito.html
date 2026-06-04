@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <header class="encabezado">
+        <img src="img/fondoenca.png" class="fondoenca">
+         <nav class="menu">
+        <a href="Index.html">Inicio</a>
+        <span class="estrella">★</span>
+        <a href="Historia.html">Historia</a>
+        <span class="estrella">★</span>
+        <a href="Productos.html">Productos</a>
+        <span class="estrella">★</span>
+        <a href="Contactos.html">Contacto</a>
+        <a href="carrito.html">
+          <img src="img/carrito.png" class="carrito">
+
+</a>
+        
+        
+
+        </nav>
+    </header> 
+    <h1 class="titulo">CARRITO DE COMPRAS</h1>
+    <div id="carrito" class="carritocaja"></div>
+
+
+    <script>
+
+let nombres = [
+    "Chorizo",
+    "Butifarra",
+    "Jamón",
+    "Salchicha Americana",
+    "Tocineta Negra",
+    "Tocineta Blanca",
+    "Salchicha Tradicional x26"
+];
+
+let precios = [18000, 16000, 22000, 15000, 25000, 23000, 28000];
+
+let cantidades = JSON.parse(localStorage.getItem("cantidades"));
+
+if(cantidades == null){
+    cantidades = [0, 0, 0, 0, 0, 0, 0];
+}
+
+function Agregar(pos){
+    cantidades[pos]++;
+
+    localStorage.setItem("cantidades", JSON.stringify(cantidades));
+
+    Mostrar();
+}
+
+function Mostrar(){
+    let texto = "";
+    let total = 0;
+    let totalArticulos = 0;
+
+    for(let i = 0; i < nombres.length; i++){
+
+        if(cantidades[i] > 0){
+
+            let subtotal = cantidades[i] * precios[i];
+
+            texto += "<p>" +
+            nombres[i] + " - " +
+            cantidades[i] + " unidades - $" +
+            subtotal +
+            "</p>";
+
+            total += subtotal;
+            totalArticulos += cantidades[i];
+        }
+    }
+
+    texto += "<h3>Total artículos: " + totalArticulos + "</h3>";
+    texto += "<h3>Total a pagar: $" + total + "</h3>";
+
+    document.getElementById("carrito").innerHTML = texto;
+}
+Mostrar();
+
+function VaciarCarrito(){
+
+    cantidades = [0,0,0,0,0,0];
+
+    localStorage.setItem(
+        "cantidades",
+        JSON.stringify(cantidades)
+    );
+
+    location.reload();
+}
+
+</script>
+
+<button onclick="VaciarCarrito()" class="boton">
+    Vaciar Carrito
+</button>
+    
+</body>
+</html>
